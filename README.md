@@ -22,8 +22,8 @@ This document describes deploying STC Labserver and OTG services using a docker-
       `docker-compose -f compose.yaml down`
  
 ## Environment  
-  1. Any Linux OS
-  2. Install docker engine and docker compose   
+  1. Install docker engine and docker compose on any flavour of linux vm
+      Docker version 24.0.5/docker-compose version 1.29.2  
   
 ## TODO
  1. Upload and get the images from public standard repo's
