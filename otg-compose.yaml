@@ -22,7 +22,8 @@ services:
       dockerfile: Dockerfile
       args:
         LSERVER: ${LABSERVER}
-    container_name: otg    
+        OTG: ${otg_build}
+    container_name: otg
     image: otg:latest
     ports: ["50051:50051","50052:50052"]
     tty: true
