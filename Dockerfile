@@ -12,6 +12,7 @@ WORKDIR /opt/ondatraOTG
 COPY $OTG_BUILD $WORKDIR/
 RUN chmod +x $WORKDIR/$OTG_BUILD
 COPY entrypoint.sh $WORKDIR/
+RUN chmod +x $WORKDIR/entrypoint.sh
 RUN cp /entrypoint.sh .
 RUN cp /$OTG_BUILD .
 
