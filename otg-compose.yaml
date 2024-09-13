@@ -4,8 +4,7 @@ services:
   labserver:
     container_name: labserver
     image: registry.oriontest.net/labserver
-    ports:
-     - "40006:40006"
+    ports: ["80:80","40006:40006"]
     logging:
       options:
         max-size: "10m"
