@@ -8,17 +8,19 @@ This document describes deploying STC Labserver and OTG services using a docker-
   - **entrypoint.sh**: shell script used to start otg services(gnmi and otg) 
  
 ## Deployment steps
- 1. Download and keep the otg binary file(otgservice.V1.0.40.20240805081514.sh) in any folder on VM
- 2. Download and extract labserver container image locally if required any particular labserver version(labserver-5.51.2946.tar.xz)
+ 1. Clone the repository
+      `git clone https://github.com/SpirentOrion/stc-otg-setup`
+ 2. Download and keep the otg binary file(otgservice.V1.0.40.20240805081514.sh) in stc-otg-setup folder
+ 3. Download and extract labserver container image locally if required any particular labserver version(labserver-5.51.2946.tar.xz)
       `docker load -i labserver-5.51.2946.tar.xz`
- 3. Update the environment variables and otgservice binary file in .env file
- 4. Run the compose file to deploy otg and labserver services as below.
+ 4. Update the environment variables and otgservice binary file in .env file
+ 5. Run the compose file to deploy otg and labserver services as below.
       `docker-compose -f otg-compose.yaml up -d`
- 5. Check if docker containers are running
+ 6. Check if docker containers are running
       `docker ps -a`
- 6. Login into otg container and check if gnmi and otg services are started       
+ 7. Login into otg container and check if gnmi and otg services are started       
       `docker exec -it otg /bin/bash`
- 7. Stop the containers.
+ 8. Stop the containers.
       `docker-compose -f otg-compose.yaml down`
  
 ## Environment  
