@@ -7,6 +7,11 @@ ARG OTG
 ENV LABSERVER=$LSERVER
 ENV OTG_BUILD=$OTG
 
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y curl psmisc jq && \
+    rm -rf /var/lib/apt/lists/*
+
 # Set working directory and copy application files
 WORKDIR /opt/ondatraOTG
 COPY $OTG_BUILD $WORKDIR/
