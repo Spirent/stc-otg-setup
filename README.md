@@ -29,17 +29,19 @@ This document describes deploying STC Labserver and OTG services using a docker-
       **Docker-compose version**: 1.29.2
 
 ## AION Licensing
-### create or update aion user
- curl -X PUT http://${OTGSERVICE_TARGET}/user -H "Content-Type: application/json" -d ' {"username":"","server":"","password":"","workspace":"" }'
- eg: curl -X PUT http://localhost:50051/user -H "Content-Type: application/json" -d '{"username":"demo@spirent.com","server":"http://10.61.37.138/","password":"****","workspace":"Spirent"}'
-### get aion user
- curl -X GET http://${OTGSERVICE_TARGET}/user
-### remove aion user
- curl -X POST http://${OTGSERVICE_TARGET}/user/remove
-### test aion user
- curl -X POST http://${OTGSERVICE_TARGET}/user/test
+  - **Create or update AION user:**<br>
+    `curl -X PUT http://${OTGSERVICE_TARGET}/user -H "Content-Type: application/json" -d '{"username":"","server":"","password":"","workspace":"" }'`
+
+    For example:<br>
+    `curl -X PUT http://localhost:50051/user -H "Content-Type: application/json" -d '{"username":"demo@spirent.com","server":"http://10.61.37.138/","password":"","workspace":"Spirent"}'`
+  - **Get aion user:**<br>
+    `curl -X GET http://${OTGSERVICE_TARGET}/user`
+  - **Remove aion user:**<br>
+    `curl -X POST http://${OTGSERVICE_TARGET}/user/remove`
+  - **Test aion user connection:**<br>
+     `curl -X POST http://${OTGSERVICE_TARGET}/user/test`
 
 ## ToDo
- 1.Replace Ubuntu to a more light OS like alpine
- 2.Review for technical,security and document before migrate to Spirent repo
- 3.KNE deployment solution
+    1.Replace Ubuntu to a more light OS like alpine
+    2.Review for technical,security and document before migrate to Spirent repo
+    3.KNE deployment solution
