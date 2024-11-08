@@ -1,15 +1,16 @@
-FROM ubuntu
+FROM alpine
 
 # Define variables
 ARG LSERVER
 ARG OTG
+
 # Set environment variables
 ENV LABSERVER=$LSERVER
 ENV OTG_BUILD=$OTG
 
 # Install required packages
-RUN apt-get update && \
-    apt-get install -y curl psmisc jq && \
+RUN apk update && \
+    apk add --no-cache curl psmisc jq --upgrade bash && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory and copy application files
@@ -22,6 +23,6 @@ RUN cp /entrypoint.sh .
 RUN cp /$OTG_BUILD .
 
 #Define the default executable
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/opt/ondatraOTG/entrypoint.sh"]
 
 CMD tail -f /dev/null

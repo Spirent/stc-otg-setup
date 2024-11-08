@@ -14,7 +14,7 @@ echo "Running otgservice script with command: $CMD"
 $CMD
 sleep 10
 cd /opt/ondatraOTG/otgservice || exit 1
-./otgctl.sh --start --with-restserver $LABSERVER
+sh otgctl.sh --start --with-restserver $LABSERVER
 status=$?
 
 if [ $status -ne 0 ]; then
