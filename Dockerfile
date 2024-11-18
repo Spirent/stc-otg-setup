@@ -3,6 +3,7 @@ FROM alpine
 # Define variables
 ARG LSERVER
 ARG OTG
+ARG WORKDIR=/opt/ondatraOTG
 
 # Set environment variables
 ENV LABSERVER=$LSERVER
@@ -14,15 +15,15 @@ RUN apk update && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory and copy application files
-WORKDIR /opt/ondatraOTG
+WORKDIR $WORKDIR
 COPY $OTG_BUILD $WORKDIR/
 RUN chmod +x $WORKDIR/$OTG_BUILD
 COPY entrypoint.sh $WORKDIR/
 RUN chmod +x $WORKDIR/entrypoint.sh
-RUN cp /entrypoint.sh .
-RUN cp /$OTG_BUILD .
 
 #Define the default executable
+SHELL ["/bin/sh", "-c"]
+
 ENTRYPOINT ["sh", "/opt/ondatraOTG/entrypoint.sh"]
 
 CMD tail -f /dev/null
