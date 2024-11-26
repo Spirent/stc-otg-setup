@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  labserver:
+    container_name: labserver
+    image: registry.oriontest.net/labserver
+    ports: ["80:80","4006:40006"]
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    shm_size: '250m'
+    tty: true
+    environment:
+      SPIRENTD_LICENSE_FILE: ${LICENSE_SERVER}
+    volumes:
+      - /data/:/data
+  otg:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        LSERVER: ${LABSERVER}
+        OTG: ${otg_build}
+    image: otg:latest
+    ports: ["48153-48200:50051","49153-49200:50052"]
+    deploy:
+      replicas: 1
+    tty: true
+    volumes:
+      - /home/spirent/demo/testdata/:/share
+
+    command: "tail -f /dev/null"
