@@ -14,7 +14,9 @@ echo "Running otgservice script with command: $CMD"
 $CMD
 sleep 10
 cd /opt/ondatraOTG/otgservice || exit 1
-sh otgctl.sh --start --with-restserver $LABSERVER
+./otgctl --start
+sleep 2
+./otgctl --restserver $LABSERVER
 status=$?
 
 if [ $status -ne 0 ]; then
@@ -30,4 +32,5 @@ sleep 5
 # Prevent the container from exiting
 echo "Entering sleep mode to keep container running"
 exec sleep infinity
+
 
