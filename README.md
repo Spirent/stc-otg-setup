@@ -15,20 +15,21 @@ This document describes deploying STC Labserver and OTG services using a docker-
  3. Download and extract labserver container image locally if required any particular labserver version(labserver-5.51.2946.tar.xz)
       `docker load -i labserver-5.49.2816.tar.xz`
  4. Update the environment variables and otgservice binary file in .env file
- 5. Run the compose file to deploy otg and labserver services as below.
+ 5. Remove if any existing otg docker image using **docker rmi <image id>**
+ 6. Run the compose file to deploy otg and labserver services as below.
       `docker-compose -f otg-compose.yaml up -d`      
- 6. Use **otg-multi-compose.yaml** file to start multi instances of otg service
+ 7. Use **otg-multi-compose.yaml** file to start multi instances of otg service
       `docker-compose -f otg-multi-compose.yaml up --scale otg=2 -d`    
     **Note:** 
     **--scale otg=<no of otg instances>** option used to create multiple instances of otg/gnmi service and host ports will be assigned dynamically in below range.
     **otg service:** 48153-48200
     **gnmi service:** 49153-49200
     
- 7. Check if docker containers are running
+ 8. Check if docker containers are running
       `docker ps -a`
- 8. Login into otg container and check if gnmi and otg services are started
+ 9. Login into otg container and check if gnmi and otg services are started
       `docker exec -it otg /bin/bash`
- 9. Stop the containers.
+ 10. Stop the containers.
       `docker-compose -f otg-compose.yaml down`
 
 ## Environment
